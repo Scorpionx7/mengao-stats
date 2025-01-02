@@ -1,6 +1,7 @@
 package com.esther.mengo.mengaostats.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -8,6 +9,7 @@ import lombok.Data;
 @Table (name = "tb_estatistica")
 public class Estatistica {
 
+    @ManyToOne
     private Jogador jogador;
     private int gols;
     private int assistencias;

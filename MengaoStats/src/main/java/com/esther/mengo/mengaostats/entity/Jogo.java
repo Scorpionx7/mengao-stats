@@ -15,6 +15,8 @@ public class Jogo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate data;
+
+    @ManyToMany
     private List<Jogador> jogadoresDisponiveis;
 
     public Jogo() {

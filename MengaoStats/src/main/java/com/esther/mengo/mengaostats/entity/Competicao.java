@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
@@ -16,14 +17,18 @@ public class Competicao {
     private String nome;
     private LocalDate ano;
 
+    @OneToMany(mappedBy = "competicao")
+    private List<Jogo> jogos;
+
     public Competicao() {
 
     }
 
-    public Competicao(Long id, String nome, LocalDate ano) {
+    public Competicao(Long id, String nome, LocalDate ano, List<Jogo> jogos) {
         this.id = id;
         this.nome = nome;
         this.ano = ano;
+        this.jogos = jogos;
     }
 
     public Long getId() {
@@ -48,5 +53,13 @@ public class Competicao {
 
     public void setAno(LocalDate ano) {
         this.ano = ano;
+    }
+
+    public List<Jogo> getJogos() {
+        return jogos;
+    }
+
+    public void setJogos(List<Jogo> jogos) {
+        this.jogos = jogos;
     }
 }
