@@ -14,18 +14,34 @@ public class Jogo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String adversario;
+    private String resultado;
     private LocalDate data;
 
+    @ManyToOne
+    @JoinColumn(name = "competicao_id", nullable = false)
+    private Competicao competicao;
+
+
     @ManyToMany
+    @JoinTable(
+            name = "jogos_jogadores",
+            joinColumns = @JoinColumn(name = "jogo_id"),
+            inverseJoinColumns = @JoinColumn(name = "jogador_id")
+    )
     private List<Jogador> jogadoresDisponiveis;
 
     public Jogo() {
 
     }
 
-    public Jogo(Long id, LocalDate data, List<Jogador> jogadoresDisponiveis) {
+    public Jogo(Long id, String adversario, String resultado, LocalDate data, Competicao competicao, List<Jogador> jogadoresDisponiveis) {
         this.id = id;
+        this.adversario = adversario;
+        this.resultado = resultado;
         this.data = data;
+        this.competicao = competicao;
         this.jogadoresDisponiveis = jogadoresDisponiveis;
     }
 
@@ -51,6 +67,30 @@ public class Jogo {
 
     public void setJogadoresDisponiveis(List<Jogador> jogadoresDisponiveis) {
         this.jogadoresDisponiveis = jogadoresDisponiveis;
+    }
+
+    public String getAdversario() {
+        return adversario;
+    }
+
+    public void setAdversario(String adversario) {
+        this.adversario = adversario;
+    }
+
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
+    }
+
+    public Competicao getCompeticao() {
+        return competicao;
+    }
+
+    public void setCompeticao(Competicao competicao) {
+        this.competicao = competicao;
     }
 }
 

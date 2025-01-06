@@ -17,7 +17,7 @@ public class Competicao {
     private String nome;
     private LocalDate ano;
 
-    @OneToMany(mappedBy = "competicao")
+    @OneToMany(mappedBy = "competicao", cascade = CascadeType.ALL)
     private List<Jogo> jogos;
 
     public Competicao() {

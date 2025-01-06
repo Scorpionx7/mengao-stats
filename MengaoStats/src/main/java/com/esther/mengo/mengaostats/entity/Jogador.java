@@ -4,6 +4,8 @@ package com.esther.mengo.mengaostats.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "tb_jogadores")
@@ -21,12 +23,14 @@ public class Jogador {
     private boolean contratado;
     private boolean negocioado;
 
+    @ManyToMany(mappedBy = "jogadores")
+    private List<Jogo> jogos;
+
     public Jogador() {
 
     }
 
-    public Jogador(Long id, String nome, String posicao, boolean status, boolean suspenso,
-                   boolean lesionado, boolean contratado, boolean negocioado) {
+    public Jogador(Long id, String nome, String posicao, boolean status, boolean suspenso, boolean lesionado, boolean contratado, boolean negocioado, List<Jogo> jogos) {
         this.id = id;
         this.nome = nome;
         this.posicao = posicao;
@@ -35,6 +39,7 @@ public class Jogador {
         this.lesionado = lesionado;
         this.contratado = contratado;
         this.negocioado = negocioado;
+        this.jogos = jogos;
     }
 
     public Long getId() {
@@ -101,5 +106,11 @@ public class Jogador {
         this.negocioado = negocioado;
     }
 
+    public List<Jogo> getJogos() {
+        return jogos;
+    }
 
+    public void setJogos(List<Jogo> jogos) {
+        this.jogos = jogos;
+    }
 }
