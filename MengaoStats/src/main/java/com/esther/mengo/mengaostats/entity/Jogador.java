@@ -15,7 +15,7 @@ public class Jogador {
 
     private String nome;
     private String posicao;
-    private boolean estaDisponivel;
+    private boolean status;
     private boolean suspenso;
     private boolean lesionado;
     private boolean contratado;
@@ -25,12 +25,12 @@ public class Jogador {
 
     }
 
-    public Jogador(Long id, String nome, String posicao, boolean estaDisponivel, boolean suspenso,
+    public Jogador(Long id, String nome, String posicao, boolean status, boolean suspenso,
                    boolean lesionado, boolean contratado, boolean negocioado) {
         this.id = id;
         this.nome = nome;
         this.posicao = posicao;
-        this.estaDisponivel = estaDisponivel;
+        this.status = status;
         this.suspenso = suspenso;
         this.lesionado = lesionado;
         this.contratado = contratado;
@@ -61,12 +61,12 @@ public class Jogador {
         this.posicao = posicao;
     }
 
-    public boolean isEstaDisponivel() {
-        return estaDisponivel;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setEstaDisponivel(boolean estaDisponivel) {
-        this.estaDisponivel = estaDisponivel;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public boolean isSuspenso() {
