@@ -1,7 +1,6 @@
 package com.esther.mengo.mengaostats.model;
 
 import jakarta.persistence.*;
-import org.hibernate.stat.Statistics;
 
 import java.time.LocalDateTime;
 
@@ -18,6 +17,7 @@ public class Game {
     private LocalDateTime date;
     private String homeTeam;
     private String awayTeam;
+
     private Integer homeScore;
     private Integer awayScore;
 
