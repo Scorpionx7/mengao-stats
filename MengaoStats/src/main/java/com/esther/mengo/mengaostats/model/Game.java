@@ -1,19 +1,26 @@
 package com.esther.mengo.mengaostats.model;
 
+import jakarta.persistence.*;
 import org.hibernate.stat.Statistics;
 
 import java.time.LocalDateTime;
 
+@Entity
 public class Game {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
     private Competition competition;
+
     private LocalDateTime date;
     private String homeTeam;
     private String awayTeam;
     private Integer homeScore;
     private Integer awayScore;
-    private Statistics statistics;
+
 
     public Game() {
     }
@@ -81,11 +88,4 @@ public class Game {
         this.awayScore = awayScore;
     }
 
-    public Statistics getStatistics() {
-        return statistics;
-    }
-
-    public void setStatistics(Statistics statistics) {
-        this.statistics = statistics;
-    }
 }

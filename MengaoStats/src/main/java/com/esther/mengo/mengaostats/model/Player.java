@@ -1,12 +1,19 @@
 package com.esther.mengo.mengaostats.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Player {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String position;
     private int age;
     private int number;
+
+    @ManyToOne
     private Statistic statistic;
 
     public Player() {

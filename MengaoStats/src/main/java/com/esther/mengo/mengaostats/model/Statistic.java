@@ -1,7 +1,15 @@
 package com.esther.mengo.mengaostats.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Statistic {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int goals;
     private int assists;
@@ -77,4 +85,5 @@ public class Statistic {
     public void setShotsOnTarget(int shotsOnTarget) {
         this.shotsOnTarget = shotsOnTarget;
     }
+
 }
