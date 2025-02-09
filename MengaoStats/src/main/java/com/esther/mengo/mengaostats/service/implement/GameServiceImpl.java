@@ -1,7 +1,8 @@
-package com.esther.mengo.mengaostats.service;
+package com.esther.mengo.mengaostats.service.implement;
 
 import com.esther.mengo.mengaostats.model.Game;
 import com.esther.mengo.mengaostats.repository.GameRepository;
+import com.esther.mengo.mengaostats.service.GameService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

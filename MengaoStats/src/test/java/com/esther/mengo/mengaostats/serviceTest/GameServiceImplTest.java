@@ -3,7 +3,7 @@ package com.esther.mengo.mengaostats.serviceTest;
 import com.esther.mengo.mengaostats.model.Competition;
 import com.esther.mengo.mengaostats.model.Game;
 import com.esther.mengo.mengaostats.repository.GameRepository;
-import com.esther.mengo.mengaostats.service.GameServiceImpl;
+import com.esther.mengo.mengaostats.service.implement.GameServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
