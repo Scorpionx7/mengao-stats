@@ -28,17 +28,23 @@ public class Player {
     @NotNull(message = "Number is required")
     private int number;
 
+    private int goals;
+    private int assists;
+
     @ManyToOne
     private Statistic statistic;
 
     public Player() {
     }
 
-    public Player(String name, String position, int age, int number) {
+    public Player(String name, String position, int age, int number, int goals, int assists, Statistic statistic) {
         this.name = name;
         this.position = position;
         this.age = age;
         this.number = number;
+        this.goals = goals;
+        this.assists = assists;
+        this.statistic = statistic;
     }
 
     public Long getId() {
@@ -87,5 +93,21 @@ public class Player {
 
     public void setStatistic(Statistic statistic) {
         this.statistic = statistic;
+    }
+
+    public int getGoals() {
+        return goals;
+    }
+
+    public void setGoals(int goals) {
+        this.goals = goals;
+    }
+
+    public int getAssists() {
+        return assists;
+    }
+
+    public void setAssists(int assists) {
+        this.assists = assists;
     }
 }

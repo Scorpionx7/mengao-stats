@@ -17,17 +17,22 @@ public class Statistic {
     private int redCards;
     private int tackles;
     private int shotsOnTarget;
+    private int homeScore;
+    private int awayScore;
 
     public Statistic() {
     }
 
-    public Statistic(int goals, int assists, int yellowCards, int redCards, int tackles, int shotsOnTarget) {
+    public Statistic(Long id, int goals, int assists, int yellowCards, int redCards, int tackles, int shotsOnTarget, int homeScore, int awayScore) {
+        this.id = id;
         this.goals = goals;
         this.assists = assists;
         this.yellowCards = yellowCards;
         this.redCards = redCards;
         this.tackles = tackles;
         this.shotsOnTarget = shotsOnTarget;
+        this.homeScore = homeScore;
+        this.awayScore = awayScore;
     }
 
     public Long getId() {
@@ -86,4 +91,19 @@ public class Statistic {
         this.shotsOnTarget = shotsOnTarget;
     }
 
+    public int getHomeScore() {
+        return homeScore;
+    }
+
+    public void setHomeScore(int homeScore) {
+        this.homeScore = homeScore;
+    }
+
+    public int getAwayScore() {
+        return awayScore;
+    }
+
+    public void setAwayScore(int awayScore) {
+        this.awayScore = awayScore;
+    }
 }

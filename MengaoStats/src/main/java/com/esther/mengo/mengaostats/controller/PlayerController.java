@@ -46,4 +46,16 @@ public class PlayerController {
         playerService.deletePlayer(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/top-scorer")
+    public ResponseEntity<Player> getTopScorer() {
+        Player topScorer = playerService.getTopScorer();
+        return new ResponseEntity<>(topScorer, HttpStatus.OK);
+    }
+
+    @GetMapping("/top-assister")
+    public ResponseEntity<Player> getTopAssister() {
+        Player topAssister = playerService.getTopAssister();
+        return new ResponseEntity<>(topAssister, HttpStatus.OK);
+    }
 }

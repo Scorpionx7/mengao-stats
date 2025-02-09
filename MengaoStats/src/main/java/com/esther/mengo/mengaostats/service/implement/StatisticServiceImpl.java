@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -50,6 +51,45 @@ public class StatisticServiceImpl implements StatisticService {
     @Override
     public void deleteStatistic(Long id) {
         statisticRepository.deleteById(id);
+    }
+
+    @Override
+    public double getAverageGoalsPerGame(){
+        List<Statistic> statistics = statisticRepository.findAll();
+        if (statistics.isEmpty()) {
+            return 0.0;
+        }
+        int totalGoals = statistics.stream()
+                .mapToInt(stat -> stat.getGoals() + stat.getAssists())
+                .sum();
+        return (double) totalGoals / statistics.size();
+    }
+
+    @Override
+    public Map<String, Double> getHomeVsAwayPerformance() {
+        List<Statistic> statistics = statisticRepository.findAll();
+        if (statistics.isEmpty()) {
+            return Map.of("home", 0.0, "away", 0.0);
+        }
+
+        long homeWins = statistics.stream()
+                .filter(stat -> stat.getHomeScore() > stat.getAwayScore())
+                .count();
+
+        long awayWins = statistics.stream()
+                .filter(stat -> stat.getAwayScore() > stat.getHomeScore())
+                .count();
+
+        double homePerformance = (double) homeWins / statistics.size() * 100;
+        double awayPerformance = (double) awayWins / statistics.size() * 100;
+
+        return Map.of("home", homePerformance, "away", awayPerformance);
+    }
+
+    @Override
+    public Statistic getStatisticByPlayerId(Long playerId) {
+        return statisticRepository.findByPlayerId(playerId)
+                .orElseThrow(() -> new RuntimeException("Statistic not found for player with id: " + playerId));
     }
 
 

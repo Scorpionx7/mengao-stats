@@ -3,8 +3,11 @@ package com.esther.mengo.mengaostats.service.implement;
 import com.esther.mengo.mengaostats.model.Game;
 import com.esther.mengo.mengaostats.repository.GameRepository;
 import com.esther.mengo.mengaostats.service.GameService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +50,24 @@ public class GameServiceImpl implements GameService {
     public void deleteGame(Long id) {
         gameRepository.deleteById(id);
     }
+
+    @Override
+    public List<Game> getAllGames() {
+        return gameRepository.findAll();
+    }
+
+    @Override
+    public List<Game> getGamesByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
+        return gameRepository.findByDateBetween(startDate, endDate);
+    }
+
+    @Override
+    public Page<Game> getAllGames(Pageable pageable) {
+        return gameRepository.findAll(pageable);
+    }
+
+
+
 
 
 }

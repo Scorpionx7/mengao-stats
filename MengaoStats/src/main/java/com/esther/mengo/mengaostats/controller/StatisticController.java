@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/statistics")
@@ -47,6 +48,24 @@ public class StatisticController {
     public ResponseEntity<Void> deleteStatistic(@PathVariable Long id) {
         statisticService.deleteStatistic(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/average-goals")
+    public ResponseEntity<Double> getAverageGoalsPerGame() {
+        double averageGoals = statisticService.getAverageGoalsPerGame();
+        return new ResponseEntity<>(averageGoals, HttpStatus.OK);
+    }
+
+    @GetMapping("/home-vs-away")
+    public ResponseEntity<Map<String, Double>> getHomeVsAwayPerformance() {
+        Map<String, Double> performance = statisticService.getHomeVsAwayPerformance();
+        return new ResponseEntity<>(performance, HttpStatus.OK);
+    }
+
+    @GetMapping("/player/{playerId}")
+    public ResponseEntity<Statistic> getStatisticByPlayerId(@PathVariable Long playerId) {
+        Statistic statistic = statisticService.getStatisticByPlayerId(playerId);
+        return new ResponseEntity<>(statistic, HttpStatus.OK);
     }
 
 

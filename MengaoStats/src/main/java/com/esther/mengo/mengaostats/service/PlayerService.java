@@ -10,4 +10,6 @@ public interface PlayerService {
     Player createPlayer(Player player);
     Player updatePlayer(Player player, Long id);
     void deletePlayer(Long id);
+    Player getTopScorer();
+    Player getTopAssister();
 }

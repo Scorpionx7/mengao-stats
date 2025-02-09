@@ -6,6 +6,7 @@ import com.esther.mengo.mengaostats.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,5 +49,19 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public void deletePlayer(Long id) {
         playerRepository.deleteById(id);
+    }
+
+    @Override
+    public Player getTopScorer() {
+        return playerRepository.findAll().stream()
+                .max(Comparator.comparingInt(Player::getGoals))
+                .orElseThrow(() -> new RuntimeException("No players found"));
+    }
+
+    @Override
+    public Player getTopAssister() {
+        return playerRepository.findAll().stream()
+                .max(Comparator.comparingInt(Player::getAssists))
+                .orElseThrow(() -> new RuntimeException("No players found"));
     }
 }
