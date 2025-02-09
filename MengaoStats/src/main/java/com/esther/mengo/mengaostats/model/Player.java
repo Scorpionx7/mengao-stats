@@ -1,6 +1,9 @@
 package com.esther.mengo.mengaostats.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Player {
@@ -8,9 +11,21 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Size(min = 1, max = 100, message = "Name must be between 1 and 100 characters")
+    @NotNull(message = "Name is required")
     private String name;
+
+    @Size(min = 1, max = 50, message = "Position must be between 1 and 50 characters")
+    @NotNull(message = "Position is required")
     private String position;
+
+    @Min(value = 16, message = "Age must be at least 16")
+    @NotNull(message = "Age is required")
     private int age;
+
+    @Min(value = 1, message = "Number must be at least 1")
+    @NotNull(message = "Number is required")
     private int number;
 
     @ManyToOne

@@ -1,6 +1,8 @@
 package com.esther.mengo.mengaostats.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
@@ -12,10 +14,15 @@ public class Game {
     private Long id;
 
     @ManyToOne
+    @NotNull(message = "Competition is required")
     private Competition competition;
-
+    @NotNull(message = "Date is required")
     private LocalDateTime date;
+    @Size(min = 1, max = 100, message = "Home team name must be between 1 and 100 characters")
+    @NotNull(message = "Home team is required")
     private String homeTeam;
+    @Size(min = 1, max = 100, message = "Away team name must be between 1 and 100 characteres")
+    @NotNull(message = "Away team is required")
     private String awayTeam;
 
     private Integer homeScore;
