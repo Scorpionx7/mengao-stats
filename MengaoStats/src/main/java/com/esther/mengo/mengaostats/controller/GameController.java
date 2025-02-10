@@ -26,7 +26,7 @@ public class GameController {
     public ResponseEntity<List<Game>> getAllGames() {
         List<Game> games = gameService.getAllGames();
         if (games.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // Retorna 204 se não houver jogos
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
         return ResponseEntity.ok(games);
     }
@@ -74,12 +74,13 @@ public class GameController {
         return new ResponseEntity<>(games, HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<Page<Game>> getAllGames(
+    @GetMapping("/paged")
+    public ResponseEntity<Page<Game>> getPagedGames(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         Page<Game> games = gameService.getAllGames(PageRequest.of(page, size));
         return new ResponseEntity<>(games, HttpStatus.OK);
     }
+
 
 }

@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface StatisticRepository extends JpaRepository<Statistic, Long> {
+
     Optional<Statistic> findByPlayerId(Long playerId);
 
 }

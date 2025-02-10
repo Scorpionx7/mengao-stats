@@ -1,9 +1,6 @@
 package com.esther.mengo.mengaostats.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Statistic {
@@ -20,10 +17,15 @@ public class Statistic {
     private int homeScore;
     private int awayScore;
 
+    @ManyToOne
+    @JoinColumn(name = "player_id")
+    private Player player;
+
     public Statistic() {
     }
 
-    public Statistic(Long id, int goals, int assists, int yellowCards, int redCards, int tackles, int shotsOnTarget, int homeScore, int awayScore) {
+    public Statistic(Long id, int goals, int assists, int yellowCards, int redCards, int tackles,
+                     int shotsOnTarget, int homeScore, int awayScore, Player player) {
         this.id = id;
         this.goals = goals;
         this.assists = assists;
@@ -33,6 +35,7 @@ public class Statistic {
         this.shotsOnTarget = shotsOnTarget;
         this.homeScore = homeScore;
         this.awayScore = awayScore;
+        this.player = player;
     }
 
     public Long getId() {
@@ -105,5 +108,13 @@ public class Statistic {
 
     public void setAwayScore(int awayScore) {
         this.awayScore = awayScore;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
