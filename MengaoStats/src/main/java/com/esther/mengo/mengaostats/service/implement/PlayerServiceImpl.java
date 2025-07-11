@@ -1,5 +1,6 @@
 package com.esther.mengo.mengaostats.service.implement;
 
+import com.esther.mengo.mengaostats.exception.ResourceNotFoundException;
 import com.esther.mengo.mengaostats.model.Player;
 import com.esther.mengo.mengaostats.repository.PlayerRepository;
 import com.esther.mengo.mengaostats.service.PlayerService;
@@ -27,8 +28,8 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Player getPlayerId (Long id) {
-        Optional<Player> player = playerRepository.findById(id);
-        return player.orElseThrow(()-> new RuntimeException("Player not found with id " + id));
+        return playerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Player not found with id: " + id));
     }
 
     @Override
@@ -48,6 +49,9 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public void deletePlayer(Long id) {
+        if (!playerRepository.existsById(id)) { // Boa prática: verificar se existe antes de deletar
+            throw new ResourceNotFoundException("Player not found with id: " + id);
+        }
         playerRepository.deleteById(id);
     }
 
@@ -55,13 +59,13 @@ public class PlayerServiceImpl implements PlayerService {
     public Player getTopScorer() {
         return playerRepository.findAll().stream()
                 .max(Comparator.comparingInt(Player::getGoals))
-                .orElseThrow(() -> new RuntimeException("No players found"));
+                .orElseThrow(() -> new ResourceNotFoundException("No players found to determine top scorer"));
     }
 
     @Override
     public Player getTopAssister() {
         return playerRepository.findAll().stream()
                 .max(Comparator.comparingInt(Player::getAssists))
-                .orElseThrow(() -> new RuntimeException("No players found"));
+                .orElseThrow(() -> new ResourceNotFoundException("No players found to determine top assister"));
     }
 }
