@@ -13,6 +13,9 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
+    private Integer externalId;
+
     @ManyToOne
     @NotNull(message = "Competition is required")
     private Competition competition;
@@ -95,4 +98,11 @@ public class Game {
         this.awayScore = awayScore;
     }
 
+    public Integer getExternalId() {
+        return externalId;
+    }
+
+    public void setExternalId(Integer externalId) {
+        this.externalId = externalId;
+    }
 }
